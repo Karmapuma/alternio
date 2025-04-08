@@ -7,13 +7,14 @@ use App\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class RegistrationController extends AbstractController
 {
     #[Route('/registration', name: 'app_registration')]
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
@@ -21,18 +22,14 @@ final class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encode the password
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
-                $user->getPlainPassword()
+                $user->getPassword()
             );
             $user->setPassword($hashedPassword);
 
-            // Set default role as ROLE_USER (you can set others based on your needs)
-            $user->setRoles(['ROLE_USER']);
 
-            // Persist user to the database
-            $entityManager = $this->getDoctrine()->getManager();
+            $user->setRoles(['ROLE_USER']);
             $entityManager->persist($user);
             $entityManager->flush();
 
