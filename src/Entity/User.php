@@ -83,7 +83,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -163,5 +162,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * Trouve les utilisateurs qui ont uniquement le rôle ROLE_USER
+     * @return User[] Returns an array of User objects
+     */
+    public function findStudentAccounts(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.roles = :emptyRoles OR u.roles = :userRole')
+            ->setParameter('emptyRoles', '[]')
+            ->setParameter('userRole', '["ROLE_USER"]')
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }
