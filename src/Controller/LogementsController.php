@@ -22,6 +22,7 @@ class LogementsController extends AbstractController
 
         return $this->render('logements/index.html.twig', [
             'logements' => $logements,
+            'is_admin' => true,
         ]);
     }
 
@@ -54,6 +55,7 @@ class LogementsController extends AbstractController
     {
         return $this->render('logements/show.html.twig', [
             'logement' => $logement,
+            'can_edit' => true,
         ]);
     }
 

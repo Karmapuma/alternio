@@ -7,10 +7,18 @@
         <div class="logements-header">
             <h1><i class="fas fa-home me-2"></i>Détails du Logement</h1>
             <div>
-                <a href="{{ path('app_logements_edit', {'id': logement.id}) }}" class="btn btn-logements btn-logements-warning">
-                    <i class="fas fa-edit me-1"></i>Modifier
-                </a>
-                <a href="{{ path('app_logements_index') }}" class="btn btn-logements btn-logements-secondary">
+                {% if can_edit %}
+                    <a href="{{ path('app_logements_edit', {'id': logement.id}) }}" class="btn btn-logements btn-logements-warning">
+                        <i class="fas fa-edit me-1"></i>Modifier
+                    </a>
+                    <form method="post" action="{{ path('app_logements_delete', {'id': logement.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce logement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ logement.id) }}">
+                        <button class="btn btn-logements btn-logements-danger">
+                            <i class="fas fa-trash me-1"></i>Supprimer
+                        </button>
+                    </form>
+                {% endif %}
+                <a href="{{ path('app_public_logements_index') }}" class="btn btn-logements btn-logements-secondary">
                     <i class="fas fa-arrow-left me-1"></i>Retour à la liste
                 </a>
             </div>
