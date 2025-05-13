@@ -6,8 +6,8 @@
     <div class="logements-container">
         <div class="logements-header">
             <h1><i class="fas fa-home me-2"></i>Liste des Logements</h1>
-            {% if is_admin %}
-                <a href="{{ path('app_logements_new') }}" class="btn btn-logements btn-logements-primary">
+            {% if is_admin or is_granted('ROLE_OWNER') %}
+                <a href="{{ path('app_public_logements_new') }}" class="btn btn-logements btn-logements-primary">
                     <i class="fas fa-plus me-1"></i>Ajouter un logement
                 </a>
             {% endif %}
