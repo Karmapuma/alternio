@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Logement{% endblock %}
+
+{% block body %}
+    <div class="logements-container">
+        <div class="logements-header">
+            <h1><i class="fas fa-plus-circle me-2"></i>Ajouter un nouveau logement</h1>
+            <a href="{{ path('app_logements_index') }}" class="btn btn-logements btn-logements-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Retour à la liste
+            </a>
+        </div>
+
+        <div class="logements-form">
+            {{ form_start(form, {'attr': {'class': 'mt-4'}}) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            {{ form_label(form.adresse, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.adresse) }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form_label(form.ville, 'Ville', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.ville) }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form_label(form.surface, 'Surface (m²)', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.surface, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.surface) }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form_label(form.loyer, 'Loyer (€)', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.loyer, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.loyer) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            {{ form_label(form.charges, 'Charges (€)', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.charges, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.charges) }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form_label(form.nb_place, 'Nombre de places', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.nb_place, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.nb_place) }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form_label(form.date_ajout, 'Date d\'ajout', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.date_ajout, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.date_ajout) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="form-group mb-3">
+                            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+                            {{ form_errors(form.description) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-logements btn-logements-primary">
+                            <i class="fas fa-save me-1"></i>Créer le logement
+                        </button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %} 

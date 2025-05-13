@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Logement{% endblock %}
+
+{% block body %}
+    <div class="logements-container">
+        <div class="logements-header">
+            <h1><i class="fas fa-home me-2"></i>Détails du Logement</h1>
+            <div>
+                <a href="{{ path('app_logements_edit', {'id': logement.id}) }}" class="btn btn-logements btn-logements-warning">
+                    <i class="fas fa-edit me-1"></i>Modifier
+                </a>
+                <a href="{{ path('app_logements_index') }}" class="btn btn-logements btn-logements-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Retour à la liste
+                </a>
+            </div>
+        </div>
+
+        <div class="logements-card">
+            <div class="logements-card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="logements-card-header">
+                            <h5 class="logements-card-title"><i class="fas fa-info-circle me-2"></i>Informations générales</h5>
+                        </div>
+                        <div class="p-3">
+                            <table class="table">
+                                <tr>
+                                    <th><i class="fas fa-map-marker-alt me-1"></i>Adresse:</th>
+                                    <td>{{ logement.adresse }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-city me-1"></i>Ville:</th>
+                                    <td>{{ logement.ville }}</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-ruler-combined me-1"></i>Surface:</th>
+                                    <td>{{ logement.surface }} m²</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-users me-1"></i>Nombre de places:</th>
+                                    <td>{{ logement.nbPlace }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="logements-card-header">
+                            <h5 class="logements-card-title"><i class="fas fa-euro-sign me-2"></i>Informations financières</h5>
+                        </div>
+                        <div class="p-3">
+                            <table class="table">
+                                <tr>
+                                    <th><i class="fas fa-money-bill-wave me-1"></i>Loyer:</th>
+                                    <td>{{ logement.loyer }} €</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-file-invoice-dollar me-1"></i>Charges:</th>
+                                    <td>{{ logement.charges }} €</td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-calculator me-1"></i>Total mensuel:</th>
+                                    <td><strong>{{ logement.loyer + logement.charges }} €</strong></td>
+                                </tr>
+                                <tr>
+                                    <th><i class="fas fa-calendar-alt me-1"></i>Date d'ajout:</th>
+                                    <td>{{ logement.dateAjout|date('d/m/Y') }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="logements-card-header">
+                            <h5 class="logements-card-title"><i class="fas fa-align-left me-2"></i>Description</h5>
+                        </div>
+                        <div class="p-3">
+                            <p class="card-text">{{ logement.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

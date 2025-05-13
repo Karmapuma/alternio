@@ -1,0 +1,216 @@
+/* Logements Management Styles */
+
+/* General Layout */
+.logements-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logements-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.logements-header h1 {
+    font-weight: 600;
+    color: #343a40;
+    margin: 0;
+}
+
+/* Buttons */
+.btn-logements {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-logements-primary {
+    background-color: #4e73df;
+    border-color: #4e73df;
+    color: white;
+}
+
+.btn-logements-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+}
+
+.btn-logements-secondary {
+    background-color: #858796;
+    border-color: #858796;
+    color: white;
+}
+
+.btn-logements-secondary:hover {
+    background-color: #717384;
+    border-color: #6b6d7d;
+}
+
+.btn-logements-warning {
+    background-color: #f6c23e;
+    border-color: #f6c23e;
+    color: white;
+}
+
+.btn-logements-warning:hover {
+    background-color: #f4b619;
+    border-color: #f4b30d;
+}
+
+.btn-logements-danger {
+    background-color: #e74a3b;
+    border-color: #e74a3b;
+    color: white;
+}
+
+.btn-logements-danger:hover {
+    background-color: #e02d1b;
+    border-color: #d52a1a;
+}
+
+.btn-logements-info {
+    background-color: #36b9cc;
+    border-color: #36b9cc;
+    color: white;
+}
+
+.btn-logements-info:hover {
+    background-color: #2c9faf;
+    border-color: #2a96a5;
+}
+
+/* Table Styles */
+.logements-table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    border-radius: 0.35rem;
+    overflow: hidden;
+}
+
+.logements-table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #e3e6f0;
+    background-color: #f8f9fc;
+    color: #4e73df;
+    font-weight: 600;
+    padding: 12px 15px;
+}
+
+.logements-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.logements-table tbody tr:hover {
+    background-color: #f8f9fc;
+}
+
+.logements-table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+    border-top: 1px solid #e3e6f0;
+}
+
+/* Card Styles */
+.logements-card {
+    border: none;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.logements-card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    padding: 1rem 1.25rem;
+}
+
+.logements-card-title {
+    margin: 0;
+    color: #4e73df;
+    font-weight: 600;
+}
+
+.logements-card-body {
+    padding: 1.25rem;
+}
+
+/* Form Styles */
+.logements-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.logements-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.logements-form label {
+    font-weight: 500;
+    color: #5a5c69;
+    margin-bottom: 0.5rem;
+}
+
+.logements-form .form-control {
+    border-radius: 0.35rem;
+    border: 1px solid #d1d3e2;
+    padding: 0.375rem 0.75rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.logements-form .form-control:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Alert Styles */
+.logements-alert {
+    border-radius: 0.35rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+}
+
+.logements-alert-success {
+    color: #1cc88a;
+    background-color: #e8f5e9;
+    border-color: #d4edda;
+}
+
+/* Action Buttons in Table */
+.logements-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.logements-actions .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .logements-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .logements-header .btn {
+        margin-top: 10px;
+    }
+    
+    .logements-table {
+        display: block;
+        overflow-x: auto;
+    }
+} 

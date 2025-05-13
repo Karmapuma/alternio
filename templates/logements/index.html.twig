@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Logements{% endblock %}
+
+{% block body %}
+    <div class="logements-container">
+        <div class="logements-header">
+            <h1><i class="fas fa-home me-2"></i>Liste des Logements</h1>
+            <a href="{{ path('app_logements_new') }}" class="btn btn-logements btn-logements-primary">
+                <i class="fas fa-plus me-1"></i>Ajouter un logement
+            </a>
+        </div>
+
+        {% for message in app.flashes('success') %}
+            <div class="logements-alert logements-alert-success">
+                <i class="fas fa-check-circle me-2"></i>{{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="table-responsive">
+            <table class="logements-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-map-marker-alt me-1"></i>Adresse</th>
+                        <th><i class="fas fa-city me-1"></i>Ville</th>
+                        <th><i class="fas fa-ruler-combined me-1"></i>Surface</th>
+                        <th><i class="fas fa-euro-sign me-1"></i>Loyer</th>
+                        <th><i class="fas fa-file-invoice-dollar me-1"></i>Charges</th>
+                        <th><i class="fas fa-users me-1"></i>Places</th>
+                        <th><i class="fas fa-calendar-alt me-1"></i>Date d'ajout</th>
+                        <th><i class="fas fa-cogs me-1"></i>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for logement in logements %}
+                    <tr>
+                        <td>{{ logement.adresse }}</td>
+                        <td>{{ logement.ville }}</td>
+                        <td>{{ logement.surface }} m²</td>
+                        <td>{{ logement.loyer }} €</td>
+                        <td>{{ logement.charges }} €</td>
+                        <td>{{ logement.nbPlace }}</td>
+                        <td>{{ logement.dateAjout|date('d/m/Y') }}</td>
+                        <td>
+                            <div class="logements-actions">
+                                <a href="{{ path('app_logements_show', {'id': logement.id}) }}" class="btn btn-logements btn-logements-info" title="Voir les détails">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_logements_edit', {'id': logement.id}) }}" class="btn btn-logements btn-logements-warning" title="Modifier">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form method="post" action="{{ path('app_logements_delete', {'id': logement.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce logement ?');" style="display: inline-block;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ logement.id) }}">
+                                    <button class="btn btn-logements btn-logements-danger" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center py-4">
+                            <i class="fas fa-info-circle me-2"></i>Aucun logement trouvé
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %} 
