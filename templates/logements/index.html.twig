@@ -45,18 +45,20 @@
                         <td>{{ logement.dateAjout|date('d/m/Y') }}</td>
                         <td>
                             <div class="logements-actions">
-                                <a href="{{ path('app_logements_show', {'id': logement.id}) }}" class="btn btn-logements btn-logements-info" title="Voir les détails">
+                                <a href="{{ path('app_public_logements_show', {'id': logement.id}) }}" class="btn btn-logements btn-logements-info" title="Voir les détails">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ path('app_logements_edit', {'id': logement.id}) }}" class="btn btn-logements btn-logements-warning" title="Modifier">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form method="post" action="{{ path('app_logements_delete', {'id': logement.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce logement ?');" style="display: inline-block;">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ logement.id) }}">
-                                    <button class="btn btn-logements btn-logements-danger" title="Supprimer">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
+                                {% if is_admin or (app.user and logement.owner == app.user) %}
+                                    <a href="{{ path('app_logements_edit', {'id': logement.id}) }}" class="btn btn-logements btn-logements-warning" title="Modifier">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form method="post" action="{{ path('app_logements_delete', {'id': logement.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce logement ?');" style="display: inline-block;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ logement.id) }}">
+                                        <button class="btn btn-logements btn-logements-danger" title="Supprimer">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>
